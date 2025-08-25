@@ -6,7 +6,7 @@ import { fetchNoteById } from "@/lib/api"
 import css from './NotePrewiew.module.css'
 import Modal from "@/components/Modal/Modal";
 
-const NotePreviewDetailsClient = () => {
+const NotePreviewClient = () => {
     const { id } = useParams<{ id: string }>();
     const { data: note, isLoading, error } = useQuery({
     queryKey: ["note", id],
@@ -21,7 +21,7 @@ const NotePreviewDetailsClient = () => {
 
   return (<Modal onClose={() => {router.back()}}>
     <div className={css.wrapper}>
-          <button className={css.backBtn} onClick={() => {router.back()}}>Back</button>
+      <button className={css.backBtn} onClick={() => {router.back()}}>Back</button>
         <div className={css.container}>
           <div className={css.item}>
             <div className={css.header}>
@@ -36,4 +36,4 @@ const NotePreviewDetailsClient = () => {
 )
 }
 
-export default NotePreviewDetailsClient;
+export default NotePreviewClient;
