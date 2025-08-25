@@ -2,10 +2,9 @@
 
 import css from './TagsMenu.module.css'
 import { useState } from 'react'
-import type {Note} from '@/types/note';
 import Link from 'next/link';
 
-const tags:Pick<Note, 'tag'>[] | string[] = ['Todo', "Work", "Personal", "Meeting", "Shopping"]
+const tags:string[] = ['Todo', "Work", "Personal", "Meeting", "Shopping"]
 
 export default function TagsMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,14 +15,14 @@ export default function TagsMenu() {
     Notes ▾
   </button>
     {isOpen && <ul className={css.menuList}>
-      <li className={css.menuItem} key={"all"}>
-        <Link href={"/notes/filter/all"} className={css.menuLink} onClick={() => setIsOpen(false)}>
-          All notes
+      <li className={css.menuItem} key={"All"}>
+        <Link href={"/notes/filter/All"} className={css.menuLink} onClick={() => setIsOpen(false)}>
+          All
         </Link>
       </li>
-      {tags.map(tag => (<li className={css.menuItem} key={typeof tag === 'string' ? tag : tag.tag}>
+      {tags.map(tag => (<li className={css.menuItem} key={typeof tag === 'string' ? tag : tag}>
         <Link href={`/notes/filter/${tag}`} className={css.menuLink} onClick={() => setIsOpen(false)}>
-          {typeof tag === 'string' ? tag : tag.tag}
+          {typeof tag === 'string' ? tag : tag}
         </Link>
       </li>))}
     </ul>}

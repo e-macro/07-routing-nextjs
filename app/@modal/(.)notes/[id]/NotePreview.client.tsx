@@ -6,7 +6,9 @@ import { fetchNoteById } from "@/lib/api"
 import css from './NotePrewiew.module.css'
 import Modal from "@/components/Modal/Modal";
 
-const NotePreviewClient = () => {
+type Props = object;
+
+const NotePreviewClient: React.FC<Props> = () => {
     const { id } = useParams<{ id: string }>();
     const { data: note, isLoading, error } = useQuery({
     queryKey: ["note", id],
@@ -26,6 +28,7 @@ const NotePreviewClient = () => {
           <div className={css.item}>
             <div className={css.header}>
               <h2>{note.title}</h2>
+              <p className={css.tag}>{note.tag}</p>
             </div>
             <p className={css.content}>{note.content}</p>
             <p className={css.date}>{note.createdAt}</p>
