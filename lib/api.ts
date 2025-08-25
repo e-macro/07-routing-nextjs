@@ -12,10 +12,11 @@ export interface CreateNoteParams {
     tag: 'Todo' | 'Work' | 'Personal' | 'Meeting' | 'Shopping';
 }
 
-export const fetchNotes = async (page: number, query: string): Promise<NoteResponse> => {
+export const fetchNotes = async (page: number, query: string, tag?: string): Promise<NoteResponse> => {
     const params = {
         params:{
         search: query,
+        tag: tag,
         page: page,
         perPage: 12,
     },
@@ -27,6 +28,23 @@ export const fetchNotes = async (page: number, query: string): Promise<NoteRespo
     const response = await axios.get<NoteResponse>('https://notehub-public.goit.study/api/notes', params);
     return response.data;
 }
+
+// export const fetchNoteByTag = async (page: number, query: string, tag: string): Promise<NoteResponse> => {
+//     const params = {
+//         params:{
+//         search: query,
+//         page: page,
+//         perPage: 12,
+//         tag: tag
+//     },
+//     headers: {
+//         'Content-Type': 'application/json',
+//         'Authorization': `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`,
+//     }
+//     }
+//     const response = await axios.get<NoteResponse>('https://notehub-public.goit.study/api/notes', params);
+//     return response.data;
+// }
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
     const res = await axios.get<Note>(`https://notehub-public.goit.study/api/notes/${id}`, {headers: {

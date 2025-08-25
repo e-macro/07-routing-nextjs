@@ -1,7 +1,7 @@
 import css from './Home.module.css'
 
 const Home = () => {
-return  <main className={css.main}>
+return (<main className={css.main}>
   <div className={css.container}>
     <h1 className={css.title}>Welcome to NoteHub</h1>
     <p className={css.description}>
@@ -16,7 +16,7 @@ return  <main className={css.main}>
       and productivity.
     </p>
   </div>
-</main>
+</main>)
 }
 
 export default Home;
